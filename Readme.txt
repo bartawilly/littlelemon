@@ -1,3 +1,6 @@
+Database:
+    I included a dump database so you can import it and test the project
+
 Superuser:
     username:admin
     password:admin
