@@ -7,6 +7,7 @@ from .models import MenuItem
 from .serializers import MenuSerializer
 from .serializers import BookingSerializer
 from .serializers import UserSerializer
+from .serializers import MenuItemSerializer
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
@@ -65,12 +66,13 @@ class SingleMenuView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = MenuSerializer
 class MenuItemView(generics.ListCreateAPIView):
     queryset = MenuItem.objects.all()
-    serializer_class = MenuSerializer
+    serializer_class = MenuItemSerializer
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
+
 class SingleMenuItemView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Menu.objects.all()
-    serializer_class = MenuSerializer
+    queryset = MenuItem.objects.all()  # Fixed to MenuItem
+    serializer_class = MenuItemSerializer
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
