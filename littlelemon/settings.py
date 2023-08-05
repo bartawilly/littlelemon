@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'reservation',
     'restaurant',
     'rest_framework',
     'rest_framework.authtoken',
@@ -148,3 +147,4 @@ REST_FRAMEWORK = {
 }
 
 DJOSER={"USER_ID_FIELD":"username"}
+APPEND_SLASH=True

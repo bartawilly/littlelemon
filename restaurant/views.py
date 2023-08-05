@@ -11,6 +11,7 @@ from .serializers import MenuItemSerializer
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAdminUser, AllowAny
 from rest_framework.authentication import TokenAuthentication
 
 from rest_framework import generics
@@ -22,6 +23,12 @@ def index (request):
     return render(request, 'index.html', {})
 
 class bookingview(APIView):
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            self.permission_classes = [IsAdminUser]
+        else:  # POST
+            self.permission_classes = [AllowAny]
+        return super(bookingview, self).get_permissions()
     def get(self, request):
         items = Booking.objects.all()
         serializer = BookingSerializer(items, many=True)

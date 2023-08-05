@@ -20,19 +20,20 @@ from rest_framework import routers
 from restaurant import views
 from rest_framework.authtoken.views import obtain_auth_token
 
-router = routers.DefaultRouter()
-router.register(r'user', views.UserViewSet)
+# router = routers.DefaultRouter()
+# router.register(r'user', views.UserViewSet)
 
-bookingRouter = routers.DefaultRouter()
-bookingRouter.register(r'tables', views.BookingViewSet)
+# bookingRouter = routers.DefaultRouter()
+# bookingRouter.register(r'tables', views.BookingViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('restaurant/',include('restaurant.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('', include(router.urls)),
-    path('restaurant/booking/', include(bookingRouter.urls)),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'), 
     path('auth/', include('djoser.urls')),
-    path('auth/', include('djoser.urls.authtoken'))
+    path('auth/', include('djoser.urls.authtoken')),
+    path('', views.index),
+    path('api/',include('restaurant.urls')),
+    # path('api/booking/', include(bookingRouter.urls)),
+    # path('', include(router.urls)),
 ]
